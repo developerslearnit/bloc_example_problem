@@ -93,8 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
 class MyRecipesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final recipeBloc = context.bloc<RecipePaginationBloc>();
-    print("the current account id is: ${recipeBloc.recipeRepository.accountId}");
-    return Text("Account Id is currently : ${recipeBloc.recipeRepository.accountId}");
+    return BlocBuilder<AccountBloc, AccountState>(
+      builder: (context, state) {
+        return Text("Account Id is currently : ${state.selectedAccountId}");
+      },
+    );
   }
 }
